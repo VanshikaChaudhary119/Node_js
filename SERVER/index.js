@@ -1,7 +1,10 @@
 const http = require("http");
 const fs = require("fs");
+const url = require("url");
 const myServer = http.createServer((req,res)=>{
     const log = `${Date.now()}:${req.url} New Req received\n`
+    const myUrl = url.parse(req.url);
+    console.log(myUrl);
     fs.appendFile("log.txt",log,(err,data)=>{
         switch(req.url){
             case "/":
@@ -16,4 +19,4 @@ const myServer = http.createServer((req,res)=>{
     })
     // res.end("Hello from Server");
 });
-myServer.listen(8000,()=>console.log("Server started"));
+myServer.listen(8001,()=>console.log("Server started"));
